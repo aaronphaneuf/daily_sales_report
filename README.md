@@ -1,4 +1,5 @@
-# daily_sales_report
-SQL Query for daily sales comparison
+# Daily Sales Report - SQL Query
 
-This pulls from a table labeled v_TJTrans and pulls sales data for all stores. 
+Pulls from a table named v_TJTrans for each store in the company and summarizes yesterday's sales along with the matching day for last year, week to date, and matching week to date for last year.
+
+Week to date sales are calculated from Monday - Sunday for each week.
