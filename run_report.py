@@ -34,6 +34,8 @@ with open('C:/users/aphaneuf/Desktop/daily_sales.txt') as csv_file:
 
     csv_reader = csv.reader(csv_file, delimiter=',')
     stores = {"22":"Edmonton Ellerslie", "10":"Calgary Classic", "3":"Calgary Shepard", "14":"Calgary Royal Oak", "27":"Edmonton Sherwood", "12": "Edmonton Classic", "9":"Victoria", "6":"Port Credit", "16":"Edmonton Jasper", "11":"Calgary Shaganappi", "1029":"Calgary Britannia" }
+
+    #declaring dictionaries for sum of store sales and same store sales
     store_sales = {}
     same_store_sales = {}
     same_store_transactions = {}
@@ -84,9 +86,9 @@ with open('C:/users/aphaneuf/Desktop/daily_sales.txt') as csv_file:
     for row in csv_reader:
 
             #generates the names of the stores
-            html += """<tr><td width="150">"""
-            html += str(stores[row[0]])
-            html += """</td>"""
+            html2 += """<tr><td width="150">"""
+            html2 += str(stores[row[0]])
+            html2 += """</td>"""
 
             #Yesterday's sales
             if row[4] == "":
@@ -94,159 +96,159 @@ with open('C:/users/aphaneuf/Desktop/daily_sales.txt') as csv_file:
             else:
                 yesterday = round(float(row[4]),2)
                 store_sales.update({stores[row[0]] : yesterday})
-                html += """<td width="80">"""
-                html += """$""" + str(format(yesterday, ','))
-                html += """</td>"""
+                html2 += """<td width="80">"""
+                html2 += """$""" + str(format(yesterday, ','))
+                html2 += """</td>"""
 
             #Last year's sales
             if row[8] == "":
                 lastyear = '0'
-                html += """<td width="80">"""
-                html += """$""" + str(lastyear)
-                html += """</td>"""
+                html2 += """<td width="80">"""
+                html2 += """$""" + str(lastyear)
+                html2 += """</td>"""
             else:
                 lastyear = round(float(row[8]),2)
                 #testing for same store
                 same_store_sales.update({stores[row[0]] : yesterday})
                 store_sales_last_year.update({stores[row[0]] : lastyear})
-                html += """<td width="80">"""
-                html += """$""" + str(format(lastyear, ','))
-                html += """</td>"""
+                html2 += """<td width="80">"""
+                html2 += """$""" + str(format(lastyear, ','))
+                html2 += """</td>"""
 
             #Difference between yesterday and last year's sales
             if row[9] == "":
                 total = '100'
-                html += """<td width="75" align="center">"""
-                html += """100%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """100%"""
+                html2 += """</td>"""
             else:
                 total = round(float(row[9])*100,2)
-                html += """<td width="75" align="center">"""
-                html += str(total)+"""%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(total)+"""%"""
+                html2 += """</td>"""
 
             #Yesterday's transactions
             if row[10] == "":
                 transactions = '0'
                 store_transactions.update({stores[row[0]] : transactions})
-                html += """<td width="75" align="center">"""
-                html += """0"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """0"""
+                html2 += """</td>"""
             else:
                 transactions = int(row[10])
                 store_transactions.update({stores[row[0]] : transactions})
-                html += """<td width="75" align="center">"""
-                html += str(transactions)
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(transactions)
+                html2 += """</td>"""
 
             #Last year's transactions
             if row[11] == "" or row[11] =="0":
                 transactionsLastYear = '0'
-                html += """<td width="75" align="center">"""
-                html += """0"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """0"""
+                html2 += """</td>"""
             else:
                 transactionsLastYear = int(row[11])
                 #testing for same stores
                 same_store_transactions.update({stores[row[0]] : transactions})
                 store_transactions_ly.update({stores[row[0]] : transactionsLastYear})
-                html += """<td width="75" align="center">"""
-                html += str(transactionsLastYear)
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(transactionsLastYear)
+                html2 += """</td>"""
 
             #Difference between yesterday and last year's transactions
             if row[11] == '0':
                 transactionDifference = '100'
-                html += """<td width="75" align="center">"""
-                html += """100%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """100%"""
+                html2 += """</td>"""
             else:
                 transactionDifference = round(100*(float(row[10])-float(row[11])) / (float(row[11])),2)
                 transactions = row[10]
-                html += """<td width="75" align="center">"""
-                html += str(transactionDifference)+"""%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(transactionDifference)+"""%"""
+                html2 += """</td>"""
 
             #Week to date sales
             if row[15] == "":
                 wtd = '0'
                 store_wtd.update({stores[row[0]] : wtd})
-                html += """<td width="75">"""
-                html += """100%"""
-                html += """</td>"""
+                html2 += """<td width="75">"""
+                html2 += """100%"""
+                html2 += """</td>"""
             else:
                 wtd = round(float(row[15]), 2)
                 store_wtd.update({stores[row[0]] : wtd})
-                html += """<td width="75">"""
-                html += """$""" + str(format(wtd, ','))
-                html += """</td>"""
+                html2 += """<td width="75">"""
+                html2 += """$""" + str(format(wtd, ','))
+                html2 += """</td>"""
 
             #Week to date last year
             if row[19] == "":
                 wtdLastYear = int('0')
                 store_wtd_ly.update({stores[row[0]] : wtdLastYear})
-                html += """<td width="75">"""
-                html += """0"""
-                html += """</td>"""
+                html2 += """<td width="75">"""
+                html2 += """0"""
+                html2 += """</td>"""
             else:
                 wtdLastYear = round(float(row[19]), 2)
                 #same store
                 same_store_wtd.update({stores[row[0]] : wtd})
                 store_wtd_ly.update({stores[row[0]] : wtdLastYear})
-                html += """<td width="75">"""
-                html += """$""" + str(format(wtdLastYear, ','))
-                html += """</td>"""
+                html2 += """<td width="75">"""
+                html2 += """$""" + str(format(wtdLastYear, ','))
+                html2 += """</td>"""
 
             #Difference between wtd and last year's wtd sales
             if row[19] == "":
                 wtdDifference = '100'
-                html += """<td width="75" align="center">"""
-                html += """100%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """100%"""
+                html2 += """</td>"""
             else:
                 wtdDifference = round(100*(float(row[15])-float(row[19]))/(float(row[19])),2)
                 wtdLastYear = round(float(row[19]), 2)
-                html += """<td width="75" align="center">"""
-                html += str(wtdDifference)+"""%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(wtdDifference)+"""%"""
+                html2 += """</td>"""
 
             #Average sale yesterday
             if row[10] == '0':
                 averageSale = '0'
-                html += """<td width="75" align="center">"""
-                html += """0"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """0"""
+                html2 += """</td>"""
             else:
                 averageSale = round(float(row[4]) / float(row[10]), 2)
-                html += """<td width="75" align="center">"""
-                html += """$""" + str(averageSale)
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """$""" + str(averageSale)
+                html2 += """</td>"""
 
             #Average sale last year
             if row[11] == '0':
-                html += """<td width="75" align="center">"""
-                html += """0"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """0"""
+                html2 += """</td>"""
                 averageSaleLastYear = '0'
             else:
                 averageSaleLastYear = round(float(row[8]) / float(row[11]),2)
-                html += """<td width="75" align="center">"""
-                html += """$""" + str(averageSaleLastYear)
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """$""" + str(averageSaleLastYear)
+                html2 += """</td>"""
 
             #Average sale difference
             if row[11] == '0':
                 averageSaleDifference = '100'
-                html += """<td width="75" align="center">"""
-                html += """100%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += """100%"""
+                html2 += """</td>"""
             else:
                 averageSaleDifference = round(100*(averageSale - averageSaleLastYear)/(averageSaleLastYear),2)
-                html += """<td width="75" align="center">"""
-                html += str(averageSaleDifference)+"""%"""
-                html += """</td>"""
+                html2 += """<td width="75" align="center">"""
+                html2 += str(averageSaleDifference)+"""%"""
+                html2 += """</td>"""
 
-            html += """</tr>"""
+            html2 += """</tr>"""
             line_count += 1
 
 
@@ -255,7 +257,7 @@ with open('C:/users/aphaneuf/Desktop/daily_sales.txt') as csv_file:
 
 # Create the body of the message (a plain-text and an HTML version).
 text = ""
-html += """
+html2 += """
     </table>
     </p>
     </body>
