@@ -248,23 +248,15 @@ with open('C:/users/aphaneuf/Desktop/daily_sales.txt') as csv_file:
                 html2 += str(averageSaleDifference)+"""%"""
                 html2 += """</td>"""
 
-            html2 += """</tr>"""
-            line_count += 1
+            html2 += """</tr></table>
+            </p>
+            </body>
+            </html>
 
-
-
-
+        """.format(**locals())"""
 
 # Create the body of the message (a plain-text and an HTML version).
 text = ""
-html2 += """
-    </table>
-    </p>
-    </body>
-    </html>
-
-""".format(**locals())
-
 #sum of store sales and same store variables
 storeSalesYesterday = round(sum(store_sales.values()),2)
 storeSalesLastYear = round(sum(store_sales_last_year.values()),2)
