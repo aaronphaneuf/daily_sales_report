@@ -13,7 +13,7 @@ Pulls from a SQL table named v_TJTrans for each store in the company and summari
 Net sales are based off Gross sales - Combos - Discounts. These are obtained through the following filters:</p>
 
 | Column | WHERE Clause | Description |
-|--------|--------------|:-----------:|
+|--------|:------------:|:-----------:|
 | TRN_STO_FK | None | All stores are parsed |
 | TRN_AllVoid | = 0 | Void transactions are not included - Primary key |
 | TRN_Void | = 0 | Void transactions are not included - Foreign key |
@@ -24,8 +24,6 @@ Net sales are based off Gross sales - Combos - Discounts. These are obtained thr
 |TRN_EndTime | variable | TRN_EndTime is used over TRN_StartTime, which is not maintained |
 
 Week to date sales are calculated from Monday - Sunday for each week.
-
-run_report.py executes daily_sales.sql, writes the results to a file and iterates through the data, writing to a table which is then emailed out to certain individuals in the company on a daily basis.
 
 # run_report.py
 
