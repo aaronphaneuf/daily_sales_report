@@ -1,6 +1,6 @@
-# Daily Sales Report - SQL Query
+# Daily Sales Report - SQL Query & Python Script
 
-Pulls from a SQL table named v_TJTrans for each store in the company and summarizes yesterday's sales along with the matching day for last year, week to date, and matching week to date for last year. No acess to python modules (pandas, pyodbc, etc) or sql login parameters so I am working with what I can.
+Pulls from a SQL table named v_TJTrans for each store in the company and summarizes yesterday's sales along with the matching day for last year, week to date, and matching week to date for last year. No access to python modules (pandas, pyodbc, etc) or SQL login parameters so I am working with what I can.
 
 <p align="center">
 <img src="https://github.com/aaronphaneuf/daily_sales_report/blob/master/daily_sales.PNG">
@@ -8,11 +8,12 @@ Pulls from a SQL table named v_TJTrans for each store in the company and summari
 
 # daily_sales.sql
 
-<code>SELECT * from v_TJTrans</code> results in over 20 million rows and 38 columns - over 760 million cells of data dating back to 2013.
-Net sales are based off Gross sales - Combos - Discounts. These are obtained through the following filters:
+<code>SELECT * from v_TJTrans</code>
+<p>results in over 20 million rows and 38 columns - over 760 million cells of data dating back to 2013.
+Net sales are based off Gross sales - Combos - Discounts. These are obtained through the following filters:</p>
 
 | Column | WHERE Clause | Description |
-|--------|--------------|-------------|
+|--------|--------------|:-----------:|
 | TRN_STO_FK | None | All stores are parsed |
 | TRN_AllVoid | = 0 | Void transactions are not included - Primary key |
 | TRN_Void | = 0 | Void transactions are not included - Foreign key |
